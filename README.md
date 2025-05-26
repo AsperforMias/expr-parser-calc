@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](#compilation-and-build)
 
-> [中文文档](README-zh.md) | [English Documentation](README.md)
+> [中文文档](README-zh.md)
 
 A mathematical expression parser and calculator implemented in modern C++17, featuring basic arithmetic operations, operator precedence, and comprehensive error handling.
 
@@ -235,4 +235,4 @@ Issues and pull requests are welcome!
 
 ## Author
 
-[Your Name]
+[AsperforMias](https://github.com/AsperforMias)
