@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "构建计算器",
+			"type": "shell",
+			"command": "g++",
+			"args": [
+				"-std=c++17",
+				"-I",
+				"include",
+				"src/main.cpp",
+				"src/lexer.cpp",
+				"src/parser.cpp",
+				"src/calculator.cpp",
+				"-o",
+				"calculator.exe"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			]
+		}
+	]
+}
