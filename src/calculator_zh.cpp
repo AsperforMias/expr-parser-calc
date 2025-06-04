@@ -32,10 +32,18 @@ void Calculator::printHelp() const {
     std::cout << "  / : 除法" << std::endl;
     std::cout << "  ^ : 乘方" << std::endl;
     std::cout << "  ( ) : 括号" << std::endl;
+    std::cout << "\n支持的数学函数：" << std::endl;
+    std::cout << "  sqrt(x) : 平方根" << std::endl;
+    std::cout << "  sin(x)  : 正弦函数" << std::endl;
+    std::cout << "  cos(x)  : 余弦函数" << std::endl;
+    std::cout << "  tan(x)  : 正切函数" << std::endl;
+    std::cout << "  log(x)  : 自然对数" << std::endl;
+    std::cout << "  exp(x)  : 指数函数" << std::endl;
     std::cout << "\n示例表达式：" << std::endl;
     std::cout << "  2 + 3 * 4" << std::endl;
     std::cout << "  (2 + 3) * 4" << std::endl;
     std::cout << "  2^3 + 1" << std::endl;
+    std::cout << "  sqrt(16) + sin(0)" << std::endl;
     std::cout << "  -5 + 3" << std::endl;
     std::cout << "\n输入 'help' 显示帮助，输入 'quit' 或 'exit' 退出" << std::endl;
     std::cout << "==================" << std::endl;

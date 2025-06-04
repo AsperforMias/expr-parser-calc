@@ -48,16 +48,6 @@ void Calculator::run() {
     // 设置Windows控制台支持UTF-8
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    
-    // 启用ANSI转义序列支持
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (hOut != INVALID_HANDLE_VALUE) {
-        DWORD dwMode = 0;
-        if (GetConsoleMode(hOut, &dwMode)) {
-            dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-            SetConsoleMode(hOut, dwMode);
-        }
-    }
 #endif
     
     std::cout << "Welcome to Expression Calculator!" << std::endl;
