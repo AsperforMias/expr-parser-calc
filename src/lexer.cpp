@@ -40,6 +40,15 @@ double Lexer::readNumber() {
     return std::stod(number);
 }
 
+std::string Lexer::readIdentifier() {
+    std::string identifier;
+    while (position < length && (std::isalnum(currentChar()) || currentChar() == '_')) {
+        identifier += currentChar();
+        advance();
+    }
+    return identifier;
+}
+
 Token Lexer::getNextToken() {
     skipWhitespace();
     
@@ -53,6 +62,20 @@ Token Lexer::getNextToken() {
     if (std::isdigit(ch) || ch == '.') {
         double value = readNumber();
         return Token(TokenType::NUMBER, value, std::to_string(value));
+    }
+    
+    // 处理标识符和函数名
+    if (std::isalpha(ch)) {
+        std::string identifier = readIdentifier();
+        
+        if (identifier == "sqrt") return Token(TokenType::SQRT, 0, identifier);
+        if (identifier == "sin") return Token(TokenType::SIN, 0, identifier);
+        if (identifier == "cos") return Token(TokenType::COS, 0, identifier);
+        if (identifier == "tan") return Token(TokenType::TAN, 0, identifier);
+        if (identifier == "log") return Token(TokenType::LOG, 0, identifier);
+        if (identifier == "exp") return Token(TokenType::EXP, 0, identifier);
+        
+        return Token(TokenType::INVALID, 0, identifier);
     }
     
     // 处理操作符
