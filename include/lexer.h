@@ -12,6 +12,13 @@ enum class TokenType {
     POWER,        // ^
     LEFT_PAREN,   // (
     RIGHT_PAREN,  // )
+    // 新增数学函数
+    SQRT,         // sqrt
+    SIN,          // sin
+    COS,          // cos
+    TAN,          // tan
+    LOG,          // log
+    EXP,          // exp
     END,          // 结束标记
     INVALID       // 无效令牌
 };
@@ -37,6 +44,7 @@ private:
     void advance();
     void skipWhitespace();
     double readNumber();
+    std::string readIdentifier(); // 新增：读取标识符
     
 public:
     Lexer(const std::string& input);
