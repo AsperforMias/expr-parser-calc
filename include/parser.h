@@ -46,6 +46,19 @@ public:
     double evaluate() override;
 };
 
+// 数学函数节点
+class FunctionNode : public ASTNode {
+private:
+    TokenType function_type;
+    std::unique_ptr<ASTNode> argument;
+    
+public:
+    FunctionNode(TokenType func_type, std::unique_ptr<ASTNode> arg)
+        : function_type(func_type), argument(std::move(arg)) {}
+    
+    double evaluate() override;
+};
+
 // 语法分析器类
 class Parser {
 private:
