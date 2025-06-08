@@ -1,9 +1,25 @@
 #include "calculator.h"
 #include <iostream>
 #include <stdexcept>
+#include <chrono>
 
 double Calculator::evaluate(const std::string& expression) {
+    auto start_time = std::chrono::high_resolution_clock::now();
+    
     try {
+        // 检查缓存
+        if (last_expression == expression && cached_ast) {
+            stats.cache_hits++;
+            auto result = cached_ast->evaluate();
+            
+            auto end_time = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration<double>(end_time - start_time).count();
+            stats.total_evaluation_time += duration;
+            stats.expressions_evaluated++;
+            
+            return result;
+        }
+        
         // 词法分析
         Lexer lexer(expression);
         auto tokens = lexer.tokenize();
@@ -12,11 +28,27 @@ double Calculator::evaluate(const std::string& expression) {
         Parser parser(tokens);
         auto ast = parser.parse();
         
+        // 缓存AST
+        last_expression = expression;
+        cached_ast = std::move(ast);
+        
         // 计算结果
-        return ast->evaluate();
+        auto result = cached_ast->evaluate();
+        
+        auto end_time = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration<double>(end_time - start_time).count();
+        stats.total_evaluation_time += duration;
+        stats.expressions_evaluated++;
+        
+        return result;
     } catch (const std::exception& e) {
         throw CalculatorException("Calculation Error: " + std::string(e.what()));
     }
+}
+
+void Calculator::clearCache() {
+    last_expression.clear();
+    cached_ast.reset();
 }
 
 void Calculator::printHelp() const {
